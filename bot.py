@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
-bot = telebot.TeleBot("5934353266:AAFbBpsSsO4v2Ln2B4UEFfVXN3M_O8Us9fk")
+bot = telebot.TeleBot("TOKEN")
 
 
 options = Options()
