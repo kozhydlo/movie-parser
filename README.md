@@ -1,50 +1,68 @@
-# Опис файлів у репозиторії:
-## bot.py
+# Telegram Movie Bot
 
-Файл bot.py містить код для телеграм-бота, який взаємодіє з користувачем та виконує деякі функції з обробки запитів та отримання інформації про фільми з бази даних та сайту.
+This repository contains a Telegram bot that interacts with users and retrieves movie information from a database and a website. It also includes a script for scraping movie data and storing it in an SQLite database.
 
-## Телеграм-бот:
+## Repository Structure
 
-bot.py відповідає за ініціалізацію та конфігурацію телеграм-бота.
-Визначені обробники для команд /start та всіх інших повідомлень.
-Реалізована можливість вибору опцій пошуку та обробка відповідних запитань користувача.
-Використовує Selenium для отримання додаткової інформації про фільми.
-Робота з базою даних:
+### `bot.py`
+This file contains the code for the Telegram bot, handling user interactions and executing queries to retrieve movie information.
 
-Взаємодія з SQLite базою даних (KINO3.db) для отримання інформації про фільми.
-Реалізована можливість рандомного вибору фільму та пошуку за назвою чи описом.
-Використовуєтся файл text.txt для зберігання та виведення результатів пошуку.
-main.py
-Файл main.py виконує завдання по збору інформації про фільми з вказаного сайту та записує їх у SQLite базу даних.
+#### Telegram Bot Features:
+- Initializes and configures the Telegram bot.
+- Handles the `/start` command and user messages.
+- Provides options for movie search and processes user queries.
+- Uses Selenium to fetch additional movie details.
 
-# Збір інформації:
+#### Database Interaction:
+- Connects to an SQLite database (`KINO3.db`) to retrieve movie data.
+- Supports random movie selection and search by title or description.
+- Uses `text.txt` to store and display search results.
 
-Використовує бібліотеку BeautifulSoup для парсингу HTML-коду сайту uakino.club та отримання назв, якості, посилань та описів фільмів.
-Обирає випадковий User-Agent для уникнення блокування ботом.
-Записує отримані дані в SQLite базу даних (Triangle_kino.db).
-Запити до сайту робляться циклічно, поки є нові сторінки з фільмами.
-Структура бази даних:
+### `main.py`
+This script scrapes movie information from a website and stores it in an SQLite database.
 
-Створює та оновлює таблицю Triangle_kino зі збереженою інформацією про фільми.
+#### Data Collection:
+- Uses BeautifulSoup to parse HTML from [uakino.club](https://uakino.club) and extract movie titles, quality, links, and descriptions.
+- Randomly selects a User-Agent to prevent bot detection.
+- Stores the retrieved data in an SQLite database (`Triangle_kino.db`).
+- Iterates through pages to collect movie data continuously.
 
-# Вимоги до використання:
-## Python:
+#### Database Structure:
+- Creates and updates the `Triangle_kino` table with the collected movie data.
 
-Код написаний на Python та використовує версію 3.x.
-Бібліотеки:
+## Requirements
 
-Упевніться, що ви встановили всі необхідні бібліотеки. Встановлення можна виконати командою `pip install -r requirements.txt`.
+### Python:
+- The code is written in Python and requires version 3.x.
 
-## SQLite:
-Для роботи із базою даних слід мати встановлену SQLite.
+### Dependencies:
+Ensure all required libraries are installed using:
+```bash
+pip install -r requirements.txt
+```
 
-# Як користуватися:
-## bot.py:
+### SQLite:
+- SQLite must be installed for database operations.
 
-Запустіть bot.py для запуску телеграм-бота.
-Використовуйте команду /start для ініціалізації та обрання опцій пошуку фільмів.
+## Usage
 
-## main.py:
-Запустіть main.py для збору інформації про фільми та їх запису в базу даних.
-Додаткові параметри, такі як інтервал запитів, можуть бути змінені в коді файлу.
-Зверніть увагу, що вам може бути потрібно додатково налаштувати та введені токени для телеграм-бота.
+### Running the Telegram Bot:
+Start the bot with:
+```bash
+python bot.py
+```
+- Use the `/start` command to initialize the bot and choose search options.
+
+### Running the Scraper:
+Execute the scraper with:
+```bash
+python main.py
+```
+- The script collects movie information and stores it in the database.
+- Request intervals and other parameters can be adjusted in the script.
+
+### Additional Configuration:
+- Ensure you have the necessary API tokens configured for the Telegram bot.
+
+---
+Developed for automating movie search and data collection from online sources.
